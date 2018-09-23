@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Color Changer</title>
+<link rel="stylesheet" href="/static/style.css">   
+</head>
+<body style="background-color:rgb({{ red }},{{ green }},{{ blue }});">
+<div class="radio">
+<h1>Choose A Color</h1>
+<form method="POST" action="/radio">
+  <input type="radio" name="color" value="Red" checked> Red
+  <input type="radio" name="color" value="Orange"> Orange
+  <input type="radio" name="color" value="Yellow"> Yellow
+  <input type="radio" name="color" value="Green"> Green
+  <input type="radio" name="color" value="Blue"> Blue
+  <input type="radio" name="color" value="Purple"> Purple
+  <input type="radio" name="color" value="White"> White
+  <input type="radio" name="color" value="Off"> Off<br><br>
+  <input class="btn btn-primary" type="submit" value="Send It">
+</form>
+</div>
+<div class="range">
+<h1>Make Your Own</h1>
+<form method="POST" action="/range">
+  Red:<br>
+  <input type="range" min="0" max="255" name="red"><br>
+  Green:<br>
+  <input type="range" min="0" max="255" name="green"><br>
+  Blue:<br>
+  <input type="range" min="0" max="255" name="blue"><br><br>
+  <input class="btn btn-primary" type="submit" value="Send It">
+</form>
+</div>
+<div class="party">
+<h1>Party Mode</h1>
+<form method="POST" action="/party">
+  <input class="btn btn-primary" type="submit" value="Send It">
+</form>
+</div>
+</body>
+</html>
+
