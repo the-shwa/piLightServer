@@ -85,7 +85,7 @@ def party():
     else: #bad :(
         return render_template('bad.html')
 @app.route('/fade', methods=['GET', 'POST'])
-def party():
+def fade():
     if request.method == 'POST':
         red = randint(0,255)
         green = randint(0,255)
