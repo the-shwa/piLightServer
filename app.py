@@ -1,7 +1,7 @@
 RED_PIN   = 17
 GREEN_PIN = 22
 BLUE_PIN  = 24
-
+abort = False
 from flask import Flask, render_template, request
 from random import *
 import pigpio
@@ -20,6 +20,8 @@ def radio():
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
+    global abort
+    abort = True
     if request.method == 'POST':
         color = request.form['color']
         if color == 'Red':
@@ -67,6 +69,8 @@ def range():
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
+    global abort
+    abort = True
     if request.method == 'POST':
         red = request.form['red']
         green = request.form['green']
@@ -84,6 +88,8 @@ def party():
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
+    global abort
+    abort = True
     if request.method == 'POST':
         red = randint(0,255)
         green = randint(0,255)
@@ -96,21 +102,73 @@ def party():
         return render_template('index.html',red=red, green=green, blue=blue)
     else: #bad :(
         return render_template('bad.html')
+
+def setLights(pin, brightness, maxBright):
+	realBrightness = int(int(brightness) * (float(maxBright) / 255.0))
+	pi.set_PWM_dutycycle(pin, realBrightness)
+
+def updateColor(color, step):
+	color += step
+	if color > 255:
+		return 255
+	if color < 0:
+		return 0
+	return color
+
+def fadeColors(STEPS, bright):
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
+    global abort
+    abort = False
+    r = 255.0
+    g = 0.0
+    b = 0.0
+    setLights(RED_PIN, r, bright)
+    setLights(GREEN_PIN, g, bright)
+    setLights(BLUE_PIN, b, bright)
+    while abort == False:
+    	if state and not brightChanged:
+    		if r == 255 and b == 0 and g < 255:
+    			g = updateColor(g, STEPS)
+    			setLights(GREEN_PIN, g)
+
+    		elif g == 255 and b == 0 and r > 0:
+    			r = updateColor(r, -STEPS)
+    			setLights(RED_PIN, r)
+
+    		elif r == 0 and g == 255 and b < 255:
+    			b = updateColor(b, STEPS)
+    			setLights(BLUE_PIN, b)
+
+    		elif r == 0 and b == 255 and g > 0:
+    			g = updateColor(g, -STEPS)
+    			setLights(GREEN_PIN, g)
+
+    		elif g == 0 and b == 255 and r < 255:
+    			r = updateColor(r, STEPS)
+    			setLights(RED_PIN, r)
+
+    		elif r == 255 and g == 0 and b > 0:
+    			b = updateColor(b, -STEPS)
+    			setLights(BLUE_PIN, b)
+    print ("Aborting...")
+    setLights(RED_PIN, 0)
+    setLights(GREEN_PIN, 0)
+    setLights(BLUE_PIN, 0)
+    time.sleep(0.5)
+    pi.stop()
 @app.route('/fade', methods=['GET', 'POST'])
 def fade():
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
+    global abort
     if request.method == 'POST':
-        red = randint(0,255)
-        green = randint(0,255)
-        blue = randint(0,255)
-        pi.set_PWM_dutycycle(RED_PIN, red)
-        pi.set_PWM_dutycycle(GREEN_PIN, green)
-        pi.set_PWM_dutycycle(BLUE_PIN, blue)
-        return render_template('index.html',red=red, green=green, blue=blue)
+        start_new_thread(fadeColors, (0.05,255))
+        return render_template('index.html',red=255, green=255, blue=255)
     if request.method == 'GET':
-        return render_template('index.html',red=red, green=green, blue=blue)
+        return render_template('index.html',red=255, green=255, blue=255)
     else: #bad :(
         return render_template('bad.html')
 if __name__ == '__main__':
