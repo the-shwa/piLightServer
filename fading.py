@@ -1,11 +1,6 @@
 RED_PIN   = 17
 GREEN_PIN = 22
 BLUE_PIN  = 24
-
-# Number of color changes per step (more is faster, less is slower).
-# You also can use 0.X floats.
-STEPS     = 0.01
-
 ###### END ######
 
 import os
@@ -16,6 +11,9 @@ import pigpio
 import time
 from thread import start_new_thread
 
+# Number of color changes per step (more is faster, less is slower).
+# You also can use 0.X floats.
+STEPS     = 0.01
 bright = 255
 r = 255.0
 g = 0.0
@@ -121,10 +119,10 @@ def checkKey():
 start_new_thread(checkKey, ())
 
 
-print ("+ / - = Increase / Decrease brightness")
-print ("p / r = Pause / Resume")
-print ("f /s = Faster / Slower")
-print ("c = Abort Program")
+print ("+ / - = Increase / Decrease brightness\n")
+print ("p / r = Pause / Resume\n")
+print ("f /s = Faster / Slower\n")
+print ("c = Abort Program\n")
 
 
 setLights(RED_PIN, r)
