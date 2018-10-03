@@ -17,9 +17,9 @@ def send():
         return render_template('bad.html')
 @app.route('/radio', methods=['GET', 'POST'])
 def radio():
-global RED_PIN
-global GREEN_PIN
-global BLUE_PIN
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
     if request.method == 'POST':
         color = request.form['color']
         if color == 'Red':
