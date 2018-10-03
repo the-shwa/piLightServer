@@ -3,6 +3,7 @@ GREEN_PIN = 22
 BLUE_PIN  = 24
 abort = False
 from flask import Flask, render_template, request
+from thread import start_new_thread
 from random import *
 import pigpio
 pi = pigpio.pi()
@@ -172,4 +173,4 @@ def fade():
     else: #bad :(
         return render_template('bad.html')
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
