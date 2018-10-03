@@ -1,3 +1,7 @@
+RED_PIN   = 17
+GREEN_PIN = 22
+BLUE_PIN  = 24
+
 from flask import Flask, render_template, request
 from random import *
 import pigpio
@@ -13,6 +17,9 @@ def send():
         return render_template('bad.html')
 @app.route('/radio', methods=['GET', 'POST'])
 def radio():
+global RED_PIN
+global GREEN_PIN
+global BLUE_PIN
     if request.method == 'POST':
         color = request.form['color']
         if color == 'Red':
@@ -47,9 +54,9 @@ def radio():
 	    red=0
 	    green=0
 	    blue=0
-	pi.set_PWM_dutycycle(17, red)
-	pi.set_PWM_dutycycle(22, green)
-	pi.set_PWM_dutycycle(24, blue)
+	pi.set_PWM_dutycycle(RED_PIN, red)
+	pi.set_PWM_dutycycle(GREEN_PIN, green)
+	pi.set_PWM_dutycycle(BLUE_PIN, blue)
         return render_template('index.html',red=red, green=green, blue=blue)
     if request.method == 'GET':
         return render_template('index.html',red=red, green=green, blue=blue)
@@ -57,14 +64,16 @@ def radio():
         return render_template('bad.html')
 @app.route('/range', methods=['GET', 'POST'])
 def range():
-    #print('got here')
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
     if request.method == 'POST':
         red = request.form['red']
         green = request.form['green']
         blue = request.form['blue']
-        pi.set_PWM_dutycycle(17, red)
-        pi.set_PWM_dutycycle(22, green)
-        pi.set_PWM_dutycycle(24, blue)
+        pi.set_PWM_dutycycle(RED_PIN, red)
+        pi.set_PWM_dutycycle(GREEN_PIN, green)
+        pi.set_PWM_dutycycle(BLUE_PIN, blue)
         return render_template('index.html',red=red, green=green, blue=blue)
     if request.method == 'GET':
         return render_template('index.html',red=red, green=green, blue=blue)
@@ -72,13 +81,16 @@ def range():
         return render_template('bad.html')
 @app.route('/party', methods=['GET', 'POST'])
 def party():
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
     if request.method == 'POST':
         red = randint(0,255)
         green = randint(0,255)
         blue = randint(0,255)
-        pi.set_PWM_dutycycle(17, red)
-        pi.set_PWM_dutycycle(22, green)
-        pi.set_PWM_dutycycle(24, blue)
+        pi.set_PWM_dutycycle(RED_PIN, red)
+        pi.set_PWM_dutycycle(GREEN_PIN, green)
+        pi.set_PWM_dutycycle(BLUE_PIN, blue)
         return render_template('index.html',red=red, green=green, blue=blue)
     if request.method == 'GET':
         return render_template('index.html',red=red, green=green, blue=blue)
@@ -86,13 +98,16 @@ def party():
         return render_template('bad.html')
 @app.route('/fade', methods=['GET', 'POST'])
 def fade():
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
     if request.method == 'POST':
         red = randint(0,255)
         green = randint(0,255)
         blue = randint(0,255)
-        pi.set_PWM_dutycycle(17, red)
-        pi.set_PWM_dutycycle(22, green)
-        pi.set_PWM_dutycycle(24, blue)
+        pi.set_PWM_dutycycle(RED_PIN, red)
+        pi.set_PWM_dutycycle(GREEN_PIN, green)
+        pi.set_PWM_dutycycle(BLUE_PIN, blue)
         return render_template('index.html',red=red, green=green, blue=blue)
     if request.method == 'GET':
         return render_template('index.html',red=red, green=green, blue=blue)
