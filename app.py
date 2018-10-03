@@ -4,6 +4,7 @@ BLUE_PIN  = 24
 abort = False
 from flask import Flask, render_template, request
 from thread import start_new_thread
+import time
 from random import *
 import pigpio
 pi = pigpio.pi()
@@ -156,6 +157,7 @@ def fade():
     global BLUE_PIN
     global abort
     abort = True
+    time.sleep(0.5)
     if request.method == 'POST':
         speed = request.form['speed']
         bright = request.form['bright']
