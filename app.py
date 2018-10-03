@@ -129,30 +129,24 @@ def fadeColors(STEPS, bright):
     setLights(GREEN_PIN, g, bright)
     setLights(BLUE_PIN, b, bright)
     while abort == False:
-    	if state and not brightChanged:
-    		if r == 255 and b == 0 and g < 255:
-    			g = updateColor(g, STEPS)
-    			setLights(GREEN_PIN, g)
-
-    		elif g == 255 and b == 0 and r > 0:
-    			r = updateColor(r, -STEPS)
-    			setLights(RED_PIN, r)
-
-    		elif r == 0 and g == 255 and b < 255:
-    			b = updateColor(b, STEPS)
-    			setLights(BLUE_PIN, b)
-
-    		elif r == 0 and b == 255 and g > 0:
-    			g = updateColor(g, -STEPS)
-    			setLights(GREEN_PIN, g)
-
-    		elif g == 0 and b == 255 and r < 255:
-    			r = updateColor(r, STEPS)
-    			setLights(RED_PIN, r)
-
-    		elif r == 255 and g == 0 and b > 0:
-    			b = updateColor(b, -STEPS)
-    			setLights(BLUE_PIN, b)
+    	if r == 255 and b == 0 and g < 255:
+    		g = updateColor(g, STEPS)
+    		setLights(GREEN_PIN, g)
+    	elif g == 255 and b == 0 and r > 0:
+    		r = updateColor(r, -STEPS)
+    		setLights(RED_PIN, r)
+    	elif r == 0 and g == 255 and b < 255:
+    		b = updateColor(b, STEPS)
+    		setLights(BLUE_PIN, b)
+    	elif r == 0 and b == 255 and g > 0:
+    		g = updateColor(g, -STEPS)
+    		setLights(GREEN_PIN, g)
+    	elif g == 0 and b == 255 and r < 255:
+    		r = updateColor(r, STEPS)
+    		setLights(RED_PIN, r)
+    	elif r == 255 and g == 0 and b > 0:
+    		b = updateColor(b, -STEPS)
+    		setLights(BLUE_PIN, b)
     print ("Aborting...")
     setLights(RED_PIN, 0)
     setLights(GREEN_PIN, 0)
