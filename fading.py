@@ -8,9 +8,6 @@ STEPS     = 0.01
 
 ###### END ######
 
-
-
-
 import os
 import sys
 import termios
@@ -25,6 +22,7 @@ g = 0.0
 b = 0.0
 
 brightChanged = False
+speedChanged = False
 abort = False
 state = True
 
@@ -73,7 +71,7 @@ def checkKey():
 			time.sleep(0.01)
 			brightChanged = False
 
-			bright = bright + 1
+			bright = bright + 10
 			print ("Current brightness: %d" % bright)
 
 		if c == '-' and bright > 0 and not brightChanged:
@@ -81,8 +79,24 @@ def checkKey():
 			time.sleep(0.01)
 			brightChanged = False
 
-			bright = bright - 1
+			bright = bright - 10
 			print ("Current brightness: %d" % bright)
+
+		if c == 'f' and not speedChanged:
+			speedChanged = True
+			time.sleep(0.01)
+			speedChanged = False
+
+			step = step + .01
+			print ("Current speed: %d" % (step * 100))
+
+		if c == 'f' and not speedChanged:
+			speedChanged = True
+			time.sleep(0.01)
+			speedChanged = False
+
+			step = step - .01
+			print ("Current speed: %d" % (step * 100))
 
 		if c == 'p' and state:
 			state = False
@@ -107,6 +121,7 @@ start_new_thread(checkKey, ())
 
 print ("+ / - = Increase / Decrease brightness")
 print ("p / r = Pause / Resume")
+print ("f /s = Faster / Slower")
 print ("c = Abort Program")
 
 
