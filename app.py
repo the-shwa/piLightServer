@@ -116,12 +116,13 @@ def updateColor(color, step):
 		return 0
 	return color
 
-def fadeColors(STEPS, bright):
+def fadeColors(speed, bright):
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
     global abort
     abort = False
+    STEPS = speed/1000
     r = 255.0
     g = 0.0
     b = 0.0
@@ -157,7 +158,7 @@ def fade():
     if request.method == 'POST':
         speed = request.form['speed']
         bright = request.form['bright']
-        start_new_thread(fadeColors, (speed/1000,bright))
+        start_new_thread(fadeColors, (speed,bright))
         return render_template('index.html',red=255, green=255, blue=255)
     if request.method == 'GET':
         return render_template('index.html',red=255, green=255, blue=255)
