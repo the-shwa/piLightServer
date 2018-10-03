@@ -122,7 +122,7 @@ def fadeColors(speed, bright):
     global BLUE_PIN
     global abort
     abort = False
-    STEPS = speed/1000
+    STEPS = int(speed)/1000
     r = 255.0
     g = 0.0
     b = 0.0
