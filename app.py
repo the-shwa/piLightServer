@@ -5,7 +5,6 @@ abort = False
 from flask import Flask, render_template, request
 from thread import start_new_thread
 from random import *
-import time
 import pigpio
 pi = pigpio.pi()
 app = Flask(__name__)
@@ -85,8 +84,8 @@ def range():
         return render_template('index.html',red=red, green=green, blue=blue)
     else: #bad :(
         return render_template('bad.html')
-@app.route('/party', methods=['GET', 'POST'])
-def party():
+@app.route('/random', methods=['GET', 'POST'])
+def random():
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
