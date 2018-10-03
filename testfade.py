@@ -7,7 +7,7 @@ import tty
 import pigpio
 import time
 from thread import start_new_thread
-STEPS     = 0.05
+STEPS     = 0.001
 bright = 255
 g = 0.0
 pi = pigpio.pi()
@@ -34,9 +34,9 @@ while True:
     elif g == 255:
         g = updateColor(g, -STEPS)
         up = False
-    elif not up and g > 0:
+    elif not up and g > 50:
         g = updateColor(g, -STEPS)
-    elif g == 0:
+    else:
         g = updateColor(g, STEPS)
         up = True
     setLights(GREEN_PIN, g)
