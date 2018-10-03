@@ -60,8 +60,10 @@ def getCh():
 def checkKey():
 	global bright
 	global brightChanged
+	global speedChanged
 	global state
 	global abort
+	global STEPS
 
 	while True:
 		c = getCh()
@@ -87,16 +89,16 @@ def checkKey():
 			time.sleep(0.01)
 			speedChanged = False
 
-			step = step + .01
-			print ("Current speed: %d" % (step * 100))
+			STEPS = STEPS + .01
+			print ("Current speed: %d" % (STEPS * 100))
 
 		if c == 'f' and not speedChanged:
 			speedChanged = True
 			time.sleep(0.01)
 			speedChanged = False
 
-			step = step - .01
-			print ("Current speed: %d" % (step * 100))
+			STEPS = STEPS - .01
+			print ("Current speed: %d" % (STEPS * 100))
 
 		if c == 'p' and state:
 			state = False
