@@ -131,22 +131,22 @@ def fadeColors(STEPS, bright):
     while abort == False:
     	if r == 255 and b == 0 and g < 255:
     		g = updateColor(g, STEPS)
-    		setLights(GREEN_PIN, g)
+    		setLights(GREEN_PIN, g, bright)
     	elif g == 255 and b == 0 and r > 0:
     		r = updateColor(r, -STEPS)
-    		setLights(RED_PIN, r)
+    		setLights(RED_PIN, r, bright)
     	elif r == 0 and g == 255 and b < 255:
     		b = updateColor(b, STEPS)
-    		setLights(BLUE_PIN, b)
+    		setLights(BLUE_PIN, b, bright)
     	elif r == 0 and b == 255 and g > 0:
     		g = updateColor(g, -STEPS)
-    		setLights(GREEN_PIN, g)
+    		setLights(GREEN_PIN, g, bright)
     	elif g == 0 and b == 255 and r < 255:
     		r = updateColor(r, STEPS)
-    		setLights(RED_PIN, r)
+    		setLights(RED_PIN, r, bright)
     	elif r == 255 and g == 0 and b > 0:
     		b = updateColor(b, -STEPS)
-    		setLights(BLUE_PIN, b)
+    		setLights(BLUE_PIN, b, bright)
     print ("Aborting...")
     setLights(RED_PIN, 0)
     setLights(GREEN_PIN, 0)
