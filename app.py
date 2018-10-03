@@ -155,7 +155,9 @@ def fade():
     global BLUE_PIN
     global abort
     if request.method == 'POST':
-        start_new_thread(fadeColors, (0.05,255))
+        speed = request.form['speed']
+        bright = request.form['bright']
+        start_new_thread(fadeColors, (speed/1000,bright))
         return render_template('index.html',red=255, green=255, blue=255)
     if request.method == 'GET':
         return render_template('index.html',red=255, green=255, blue=255)
