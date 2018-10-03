@@ -84,5 +84,19 @@ def party():
         return render_template('index.html',red=red, green=green, blue=blue)
     else: #bad :(
         return render_template('bad.html')
+@app.route('/fade', methods=['GET', 'POST'])
+def party():
+    if request.method == 'POST':
+        red = randint(0,255)
+        green = randint(0,255)
+        blue = randint(0,255)
+        pi.set_PWM_dutycycle(17, red)
+        pi.set_PWM_dutycycle(22, green)
+        pi.set_PWM_dutycycle(24, blue)
+        return render_template('index.html',red=red, green=green, blue=blue)
+    if request.method == 'GET':
+        return render_template('index.html',red=red, green=green, blue=blue)
+    else: #bad :(
+        return render_template('bad.html')
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
