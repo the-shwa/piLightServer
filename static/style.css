@@ -107,7 +107,7 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
 }
-.party{
+.party .fade{
     background-color: white;
     margin: auto;
     width: 75%;
@@ -116,4 +116,3 @@ input[type=range]:focus::-ms-fill-upper {
     margin-top: 25px;
     text-align: center;
 }
-
