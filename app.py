@@ -5,6 +5,7 @@ abort = False
 from flask import Flask, render_template, request
 from thread import start_new_thread
 from random import *
+import time
 import pigpio
 pi = pigpio.pi()
 app = Flask(__name__)
@@ -147,10 +148,7 @@ def fadeColors(STEPS, bright):
     	elif r == 255 and g == 0 and b > 0:
     		b = updateColor(b, -STEPS)
     		setLights(BLUE_PIN, b, bright)
-    print ("Aborting...")
-    setLights(RED_PIN, 0, bright)
-    setLights(GREEN_PIN, 0, bright)
-    setLights(BLUE_PIN, 0, bright)
+    print ("Aborting Fade")
     time.sleep(0.5)
     pi.stop()
 @app.route('/fade', methods=['GET', 'POST'])
