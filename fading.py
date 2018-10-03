@@ -90,7 +90,7 @@ def checkKey():
 			STEPS = STEPS + .01
 			print ("Current speed: %d" % (STEPS * 100))
 
-		if c == 'f' and not speedChanged:
+		if c == 's' and not speedChanged:
 			speedChanged = True
 			time.sleep(0.01)
 			speedChanged = False
