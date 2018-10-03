@@ -13,7 +13,7 @@ from thread import start_new_thread
 
 # Number of color changes per step (more is faster, less is slower).
 # You also can use 0.X floats.
-STEPS     = 0.01
+STEPS     = 0.05
 bright = 255
 r = 255.0
 g = 0.0
@@ -82,7 +82,7 @@ def checkKey():
 			bright = bright - 10
 			print ("Current brightness: %d" % bright)
 
-		if c == 'f' and not speedChanged:
+		if c == 'f' and STEPS < .5 and not speedChanged:
 			speedChanged = True
 			time.sleep(0.01)
 			speedChanged = False
@@ -90,7 +90,7 @@ def checkKey():
 			STEPS = STEPS + .01
 			print ("Current speed: %d" % (STEPS * 100))
 
-		if c == 's' and not speedChanged:
+		if c == 's' and STEPS > 0 and not speedChanged:
 			speedChanged = True
 			time.sleep(0.01)
 			speedChanged = False
