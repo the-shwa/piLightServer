@@ -122,7 +122,7 @@ def fadeColors(speed, bright):
     global BLUE_PIN
     global abort
     abort = False
-    STEPS = int(speed)/100
+    STEPS = float(speed)/1000
     r = 255.0
     g = 0.0
     b = 0.0
@@ -155,6 +155,7 @@ def fade():
     global GREEN_PIN
     global BLUE_PIN
     global abort
+    abort = True
     if request.method == 'POST':
         speed = request.form['speed']
         bright = request.form['bright']
