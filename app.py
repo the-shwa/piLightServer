@@ -149,8 +149,6 @@ def fadeColors(STEPS, bright):
     		b = updateColor(b, -STEPS)
     		setLights(BLUE_PIN, b, bright)
     print ("Aborting Fade")
-    time.sleep(0.5)
-    pi.stop()
 @app.route('/fade', methods=['GET', 'POST'])
 def fade():
     global RED_PIN
