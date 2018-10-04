@@ -169,39 +169,39 @@ def fadeRGB(speed, bright):
         if r >= 255 or g >= 255 or b >=255:
             up = False
     	if up and r == 0 and b == 0 and g < 255:
-    		g = updateColor(g, STEPS)
-    		setLights(GREEN_PIN, g, bright)
+            g = updateColor(g, STEPS)
+            setLights(GREEN_PIN, g, bright)
     	elif not up and r == 0 and b == 0 and g > 10:
-    		g = updateColor(g, -STEPS)
-    		setLights(GREEN_PIN, g, bright)
+            g = updateColor(g, -STEPS)
+            setLights(GREEN_PIN, g, bright)
         elif not up and r == 0 and b == 0 and g <= 10:
-    		g = 0.0
+            g = 0.0
             b = 10.0
-    		setLights(GREEN_PIN, g, bright)
+            setLights(GREEN_PIN, g, bright)
             setLights(BLUE_PIN, b, bright)
             up = True
     	if up and r == 0 and b < 255 and g == 0:
-    		b = updateColor(g, STEPS)
-    		setLights(BLUE_PIN, b, bright)
+            b = updateColor(g, STEPS)
+            setLights(BLUE_PIN, b, bright)
     	elif not up and r == 0 and b > 10 and g == 0:
-    		b = updateColor(b, -STEPS)
-    		setLights(BLUE_PIN, b, bright)
+            b = updateColor(b, -STEPS)
+            setLights(BLUE_PIN, b, bright)
         elif not up and r == 0 and b <= 10 and g == 0:
-    		b = 0.0
+            b = 0.0
             r = 10.0
-    		setLights(BLUE_PIN, b, bright)
+            setLights(BLUE_PIN, b, bright)
             setLights(RED_PIN, r, bright)
             up = True
         if up and r < 255 and b == 0 and g == 0:
-    		r = updateColor(r, STEPS)
-    		setLights(RED_PIN, r, bright)
+            r = updateColor(r, STEPS)
+            setLights(RED_PIN, r, bright)
     	elif not up and r > 10 and b == 0 and g == 0:
-    		r = updateColor(r, -STEPS)
-    		setLights(RED_PIN, r, bright)
+            r = updateColor(r, -STEPS)
+            setLights(RED_PIN, r, bright)
         elif not up and r <= 10 and b == 0 and g == 0:
-    		r = 0.0
+            r = 0.0
             g = 10.0
-    		setLights(RED_PIN, r, bright)
+            setLights(RED_PIN, r, bright)
             setLights(GREEN_PIN, g, bright)
             up = True
     print ("Aborting Fade")
