@@ -117,7 +117,7 @@ def updateColor(color, step):
 		return 0
 	return color
 
-def fadeColors(speed, bright):
+def fadeMulti(speed, bright):
     global RED_PIN
     global GREEN_PIN
     global BLUE_PIN
@@ -150,6 +150,85 @@ def fadeColors(speed, bright):
     		b = updateColor(b, -STEPS)
     		setLights(BLUE_PIN, b, bright)
     print ("Aborting Fade")
+
+def fadeGreen(speed, bright):
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
+    global abort
+    abort = False
+    STEPS = float(speed)/1000
+    g = 255.0
+    setLights(RED_PIN, 0.0, bright)
+    setLights(GREEN_PIN, g, bright)
+    setLights(BLUE_PIN, 0.0, bright)
+    up = False
+    while abort == False:
+    	if up and g < 255:
+            g = updateColor(g, STEPS)
+        elif g >= 255:
+            g = updateColor(g, -STEPS)
+            up = False
+        elif not up and g > 50:
+            g = updateColor(g, -STEPS)
+        else:
+            g = updateColor(g, STEPS)
+            up = True
+        setLights(GREEN_PIN, g, bright)
+    print ("Aborting Fade")
+
+def fadeRed(speed, bright):
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
+    global abort
+    abort = False
+    STEPS = float(speed)/1000
+    r = 255.0
+    setLights(RED_PIN, r, bright)
+    setLights(GREEN_PIN, 0.0, bright)
+    setLights(BLUE_PIN, 0.0, bright)
+    up = False
+    while abort == False:
+    	if up and r < 255:
+            r = updateColor(r, STEPS)
+        elif r >= 255:
+            r = updateColor(r, -STEPS)
+            up = False
+        elif not up and r > 50:
+            r = updateColor(r, -STEPS)
+        else:
+            r = updateColor(r, STEPS)
+            up = True
+        setLights(RED_PIN, r, bright)
+    print ("Aborting Fade")
+
+def fadeBlue(speed, bright):
+    global RED_PIN
+    global GREEN_PIN
+    global BLUE_PIN
+    global abort
+    abort = False
+    STEPS = float(speed)/1000
+    b = 255.0
+    setLights(RED_PIN, 0.0, bright)
+    setLights(GREEN_PIN, 0.0, bright)
+    setLights(BLUE_PIN, b, bright)
+    up = False
+    while abort == False:
+    	if up and b < 255:
+            b = updateColor(b, STEPS)
+        elif b >= 255:
+            b = updateColor(b, -STEPS)
+            up = False
+        elif not up and b > 50:
+            b = updateColor(b, -STEPS)
+        else:
+            b = updateColor(b, STEPS)
+            up = True
+        setLights(BLUE_PIN, b, bright)
+    print ("Aborting Fade")
+
 @app.route('/fade', methods=['GET', 'POST'])
 def fade():
     global RED_PIN
@@ -161,7 +240,17 @@ def fade():
     if request.method == 'POST':
         speed = request.form['speed']
         bright = request.form['bright']
-        start_new_thread(fadeColors, (speed,bright))
+        color = request.form['color']
+        if color == 'Red':
+            start_new_thread(fadeRed, (speed,bright))
+        if color == 'Green':
+            start_new_thread(fadeGreen, (speed,bright))
+        if color == 'Blue':
+            start_new_thread(fadeBlue, (speed,bright))
+        if color == 'Multi':
+            start_new_thread(fadeMulti, (speed,bright))
+        if color == 'RGB':
+            start_new_thread(fadeMulti, (speed,bright))
         return render_template('index.html',red=255, green=255, blue=255)
     if request.method == 'GET':
         return render_template('index.html',red=255, green=255, blue=255)
