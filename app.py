@@ -305,7 +305,7 @@ def fade():
         if color == 'Multi':
             start_new_thread(fadeMulti, (speed,bright))
         if color == 'RGB':
-            start_new_thread(fadeMulti, (speed,bright))
+            start_new_thread(fadeRGB, (speed,bright))
         return render_template('index.html',red=255, green=255, blue=255)
     if request.method == 'GET':
         return render_template('index.html',red=255, green=255, blue=255)
