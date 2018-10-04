@@ -168,24 +168,20 @@ def fadeRGB(speed, bright):
     while abort == False:
         if r >= 255 or g >= 255 or b >=255:
             up = False
-            print ("Got here 1")
     	if up and r == 0 and b == 0 and g < 255:
             g = updateColor(g, STEPS)
             setLights(GREEN_PIN, g, bright)
     	elif not up and r == 0 and b == 0 and g > 10:
-            print ("Got here 2")
             g = updateColor(g, -STEPS)
             setLights(GREEN_PIN, g, bright)
         elif not up and r == 0 and b == 0 and g <= 10:
-            print ("Got here 3")
             g = 0.0
             b = 10.0
             setLights(GREEN_PIN, g, bright)
             setLights(BLUE_PIN, b, bright)
             up = True
     	if up and r == 0 and b < 255 and g == 0:
-            print ("Got here 4")
-            b = updateColor(g, STEPS)
+            b = updateColor(b, STEPS)
             setLights(BLUE_PIN, b, bright)
     	elif not up and r == 0 and b > 10 and g == 0:
             b = updateColor(b, -STEPS)
