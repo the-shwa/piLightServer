@@ -7,12 +7,6 @@
     margin-top: 25px;
     text-align: center;
 }
-.radio [type="radio"]{
-    width:30px;
-    height:30px;
-    position:relative;
-    top:6px
-}
 .range{
     background-color: white;
     margin: auto;
@@ -21,6 +15,21 @@
     padding: 10px;
     margin-top: 25px;
     text-align: center;
+}
+.other{
+    background-color: white;
+    margin: auto;
+    width: 75%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 25px;
+    text-align: center;
+}
+input[type="radio"]{
+    width:30px;
+    height:30px;
+    position:relative;
+    top:6px
 }
 input[type=range] {
   -webkit-appearance: none;
@@ -106,13 +115,4 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #367ebd;
-}
-.other{
-    background-color: white;
-    margin: auto;
-    width: 75%;
-    border: 3px solid black;
-    padding: 10px;
-    margin-top: 25px;
-    text-align: center;
 }
