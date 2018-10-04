@@ -177,6 +177,7 @@ def fadeRGB(speed, bright):
             g = updateColor(g, -STEPS)
             setLights(GREEN_PIN, g, bright)
         elif not up and r == 0 and b == 0 and g <= 10:
+            print ("Got here 3")
             g = 0.0
             b = 10.0
             setLights(GREEN_PIN, g, bright)
