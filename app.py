@@ -184,6 +184,7 @@ def fadeRGB(speed, bright):
             setLights(BLUE_PIN, b, bright)
             up = True
     	if up and r == 0 and b < 255 and g == 0:
+            print ("Got here 4")
             b = updateColor(g, STEPS)
             setLights(BLUE_PIN, b, bright)
     	elif not up and r == 0 and b > 10 and g == 0:
